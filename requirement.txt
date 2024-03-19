@@ -1,0 +1,5 @@
+django
+pillow
+python-decouple
+psycopg2-binary
+requests
