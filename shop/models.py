@@ -6,7 +6,7 @@ class Item(models.Model):
     price = models.IntegerField()
 
     def __str__(self):
-        return self.name
+        return f"{self.name}"
 
 class Client(models.Model):
     name = models.CharField(max_length=30)
@@ -15,4 +15,11 @@ class Client(models.Model):
     date_purchase = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return self.name
+        return f"{self.name}"
+
+
+class Purchase(models.Model):
+    client = models.ForeignKey(Client, related_name='purchases', on_delete=models.CASCADE)
+    item = models.ManyToManyField(Item, related_name='purchases')
+    def __str__(self):
+        return f"{self.client}"
